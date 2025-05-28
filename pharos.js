@@ -9,9 +9,9 @@ const CONFIG = {
   TOKEN_FILE: path.join(__dirname, 'prdt_tokens.json'),
   CHECK_INTERVAL: 24 * 60 * 60 * 1000, // 24 hours
   API_ENDPOINTS: {
-    REQUEST_MESSAGE: 'https://api.prdt.finance/auth/request-message',
-    VERIFY: 'https://api.prdt.finance/auth/verify',
-    CHECKIN: 'https://tokenapi.prdt.finance/api/v1/mine/checkin'
+    REQUEST_MESSAGE: 'https://api7.prdt.finance/auth/request-message',
+    VERIFY: 'https://api7.prdt.finance/auth/verify',
+    CHECKIN: 'https://apim.prdt.finance/api/v1/mine/checkin'
   }
 };
 
@@ -40,7 +40,7 @@ function loadTokens() {
 }
 
 // Get request headers
-function getHeaders(domain = 'api.prdt.finance', tokens = null) {
+function getHeaders(domain = 'api7.prdt.finance', tokens = null) {
   const headers = {
     'authority': domain,
     'accept': 'application/json, text/plain, */*',
@@ -59,7 +59,7 @@ function getHeaders(domain = 'api.prdt.finance', tokens = null) {
 }
 
 // Get options headers for preflight
-function getOptionsHeaders(domain = 'tokenapi.prdt.finance') {
+function getOptionsHeaders(domain = 'apim.prdt.finance') {
   return {
     'authority': domain,
     'accept': '*/*',
@@ -160,7 +160,7 @@ async function dailyCheckIn(tokens) {
       CONFIG.API_ENDPOINTS.CHECKIN, 
       {}, // Empty body
       { 
-        headers: getHeaders('tokenapi.prdt.finance', tokens),
+        headers: getHeaders('apim.prdt.finance', tokens),
         withCredentials: true
       }
     );
